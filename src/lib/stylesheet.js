@@ -249,11 +249,14 @@ export default class StyleSheet {
     }
 
     const head = document.head || document.getElementsByTagName('head')[0]
+    var iframe = document.getElementById('jsxframe')
 
     if (relativeToTag) {
       head.insertBefore(tag, relativeToTag)
+      if (iframe) iframe.contentDocument.head.insertBefore(tag, relativeToTag)
     } else {
       head.appendChild(tag)
+      if (iframe) iframe.contentDocument.head.appendChild(tag)
     }
 
     return tag
